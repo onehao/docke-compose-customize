@@ -34,7 +34,7 @@ BUILD_PULL_TEXT = 'Status: Image is up to date for busybox:latest'
 
 def start_process(base_dir, options):
     proc = subprocess.Popen(
-        ['docker-compose'] + options,
+        [u'python '] + [u'E:\workspace\satp2\docker-compose\docker-compose'] + options,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         cwd=base_dir)
@@ -306,6 +306,14 @@ class CLITestCase(DockerClientTestCase):
         self.dispatch(['build', 'simple'])
 
         result = self.dispatch(['build', 'simple'])
+        assert BUILD_CACHE_TEXT in result.stdout
+        assert BUILD_PULL_TEXT not in result.stdout
+        
+    def test_build_db(self):
+        self.base_dir = 'E:\workspace\docker\docker\compose\linkservice\db'
+        self.dispatch(['down'])
+
+        result = self.dispatch(['down'])
         assert BUILD_CACHE_TEXT in result.stdout
         assert BUILD_PULL_TEXT not in result.stdout
 

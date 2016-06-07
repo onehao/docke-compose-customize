@@ -1,4 +1,4 @@
-Docker Compose
+Docker Compose customizing - customizing compose.
 ==============
 ![Docker Compose](logo.png?raw=true "Docker Compose Logo")
 
